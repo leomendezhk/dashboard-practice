@@ -232,7 +232,7 @@ console.log(move("z"));
 //Exercise: Creating a Person
 /* Create a class named Person, it has two properties, name, and age. You pass both properties through the constructor. Call this constructor to initialize a new Person. Remember to upload the code you created to Github. */
 
-class Person {
+/* class Person {
   constructor(name, age) {
     this.name = name;
     this.age = age;
@@ -241,7 +241,7 @@ class Person {
 
 const newPerson = new Person("Leo", 29);
 console.log(newPerson);
-
+ */
 //Exercise: Game Developer
 
 /* Imagine that you are a game developer who develops text-based games. Create a class named Player it needs:
@@ -252,7 +252,7 @@ An attack method that reduces the opponent's health by 10 per attack.
 Initialize two instances of your class Player
 Write a function that randomly decides which player attacks.  Math.random() could be handy. After each attack console.log who was attacked.
 This function will need to continue until one of instances has 0 health left, the other player should be declared the winner when a player has been defeated. Please console.log the victor. */
-
+/* 
 class Player {
   constructor(name, health) {
     this.name = name;
@@ -280,4 +280,174 @@ const fight = function (player1, player2) {
   }
 };
 
-fight(player1, player2);
+fight(player1, player2); */
+
+///////////////////////////////////////////////////////
+/* 
+//Exercise: Monster
+
+class Monster {
+  constructor(options) {
+    this.name = options.name;
+    this.health = 100;
+  }
+
+  wounded(damage) {
+    this.health -= damage;
+    monster.health < 0 ? console.log(`monster dead`) : "not dead";
+  }
+}
+
+const monster = new Monster({ name: "Rufus" });
+console.log(monster);
+
+const attack = function (monster) {
+  const damage = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+  while (monster.health > 0) {
+    monster.wounded(damage);
+    console.log(monster.health);
+  }
+};
+attack(monster);
+ */
+///////////////////////////////////////////////////////
+/* 
+class Person {
+  constructor(options) {
+    this.age = options.age;
+    this.name = options.name;
+  }
+
+  info() {
+    console.log(
+      `The person is called ${this.name} and is ${this.age} years old`
+    );
+  }
+}
+
+const person = new Person({ age: 44, name: "Tom" });
+person.info();
+ */
+////////////////////////////////////////////////////////
+/* 
+class Student extends Person {
+  constructor(options) {
+    super(options);
+    this.gpa = options.gpa;
+  }
+
+  info() {
+    console.log(
+      `The student is called ${this.name} and is ${this.age} years old. He has an overall GPA of ${this.gpa} in the university.`
+    );
+  }
+}
+
+const tom = new Student({ name: "Tom", gpa: "4.0", age: 44 });
+console.log(tom);
+tom.info();
+ */
+////////////////////////////////////////////////////////
+
+//Exercise: Casino Simulation
+/* 
+class Gambler {
+  constructor(options) {
+    this.name = options.name;
+    this.bet = options.bet;
+    this.cash = options.cash;
+  }
+}
+
+const bob = new Gambler({ name: "Bob", cash: 100, bet: 10 });
+const jim = new Gambler({ name: "Jim", cash: 100, bet: 15 });
+
+const gamblers = [bob, jim];
+
+const casino = function (gamblers) {
+  let rounds = 1;
+  console.log("Casino bets are in!");
+
+  while (true) {
+    console.log(`---------Round ${rounds++}--------`);
+
+    for (let i = 0; i < gamblers.length; i++) {
+      if (Math.random() < 0.6) {
+        gamblers[i].cash -= gamblers[i].bet;
+        console.log(
+          `Gambler ${gamblers[i].name} lost, ${gamblers[i].cash} remains.`
+        );
+      }
+      if (gamblers[i].cash <= 0) {
+        console.log(`${gamblers[i].name} has run out of cash first!`);
+        break;
+      }
+    }
+
+    if (gamblers.some((gambler) => gambler.cash <= 0)) {
+      break;
+    }
+  }
+};
+
+casino(gamblers);
+ */
+////////////////////////////////////////////////////////
+
+//Exercise: Animals
+
+class Animal {
+  constructor() {
+    this.fly = true;
+    this.layEggs = true;
+    this.swim = true;
+    this.feedMilk = true;
+  }
+
+  canLayEggs() {
+    return this.layEggs ? "can lye eggs" : "Cannot lay eggs";
+  }
+
+  canFeedMilk() {
+    return this.feedMilk ? "can feed milk" : "Cannot feed milk";
+  }
+
+  canFly() {
+    return this.fly ? "can fly" : "Cannot fly";
+  }
+
+  canSwim() {
+    return this.swim ? "can swim" : "Cannot swim";
+  }
+}
+
+class Bat extends Animal {
+  constructor() {
+    super();
+    this.swim = false;
+  }
+}
+class Bird extends Animal {
+  constructor() {
+    super();
+    this.swim = false;
+    this.feedMilk = false;
+  }
+}
+class Whale extends Animal {
+  constructor() {
+    super();
+    this.fly = false;
+    this.layEggs = false;
+  }
+}
+class Fish extends Animal {
+  constructor() {
+    super();
+    this.fly = false;
+    this.feedMilk = false;
+  }
+}
+
+const fish = new Fish();
+console.log(fish.canSwim());
